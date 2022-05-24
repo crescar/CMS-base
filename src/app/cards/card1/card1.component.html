@@ -1,0 +1,63 @@
+<div class="card" style="width: 18rem">
+  <img
+    [src]="
+      data.dataElement.url_img ||
+      'https://concepto.de/wp-content/uploads/2015/03/paisaje-800x409.jpg'
+    "
+    class="card-img-top"
+  />
+  <div class="card-body">
+    <div class="mb-3">
+      <div *ngIf="statusCard == false; else showTitle">
+        <label for="exampleFormControlInput1" class="form-label"
+          >Title card</label
+        >
+        <input
+          type="text"
+          class="form-control"
+          id="exampleFormControlInput1"
+          placeholder="whire here"
+          [(ngModel)]="data.dataElement.title"
+        />
+      </div>
+      <ng-template #showTitle>
+        <h5 class="card-title">{{ data.dataElement.title }}</h5>
+      </ng-template>
+    </div>
+    <div class="mb-3">
+      <div *ngIf="statusCard == false; else showDescription">
+        <label for="exampleFormControlTextarea1" class="form-label"
+          >Text of card</label
+        >
+        <textarea
+          class="form-control"
+          id="exampleFormControlTextarea1"
+          rows="3"
+          [(ngModel)]="data.dataElement.description"
+        ></textarea>
+      </div>
+      <ng-template #showDescription>
+        <p class="card-text">{{ data.dataElement.description }}</p>
+      </ng-template>
+    </div>
+    <div class="mb-3">
+      <div *ngIf="statusCard == false; else showEdit">
+        <label for="exampleFormControlInput1" class="form-label"
+          >image link</label
+        >
+        <input
+          type="text"
+          class="form-control"
+          id="exampleFormControlInput1"
+          placeholder="yor image link"
+          [(ngModel)]="data.dataElement.url_img"
+        />
+        <button class="btn btn-danger">Cancel</button>
+        <button class="btn btn-success" (click)="saveData()">save</button>
+      </div>
+      <ng-template #showEdit>
+        <button class="btn btn-success" (click)="editCard()">Edit</button>
+      </ng-template>
+    </div>
+  </div>
+</div>

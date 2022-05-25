@@ -14,6 +14,7 @@ import { ComponenLoadDirective } from './directivas/componen-load.directive';
 import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
 import { provideFirestore, getFirestore } from '@angular/fire/firestore';
 import { environment } from 'src/environments/environment';
+import { CardShow1Component } from './cards/card-show1/card-show1.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { environment } from 'src/environments/environment';
     Card1Component,
     Card2Component,
     ComponenLoadDirective,
+    CardShow1Component,
   ],
   imports: [
     BrowserModule,

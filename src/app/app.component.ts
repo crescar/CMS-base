@@ -5,6 +5,7 @@ import { Observable, Subscription } from 'rxjs';
 
 import { Card1Component } from './cards/card1/card1.component';
 import { Card2Component } from './cards/card2/card2.component';
+import { CardShow1Component } from './cards/card-show1/card-show1.component';
 import { UtilsService } from './services/utils.service';
 
 import {
@@ -23,6 +24,7 @@ export class AppComponent implements OnInit {
   @ViewChild(ComponenLoadDirective) showComponent!: ComponenLoadDirective;
   data: object[] = [];
   getData?: Subscription;
+  dataPage: object[] = [];
 
   constructor(public utils: UtilsService, public fireStore: Firestore) {}
 
@@ -44,6 +46,13 @@ export class AppComponent implements OnInit {
     },
   ];
 
+  cards2 = [
+    {
+      id_card: 'card1',
+      structure: CardShow1Component,
+    },
+  ];
+
   async savePage() {
     let coleccion = collection(this.fireStore, 'pages');
     return await addDoc(coleccion, { page: this.data });
@@ -54,9 +63,22 @@ export class AppComponent implements OnInit {
     let getPage = collectionData(coleccion, { idField: 'id' }) as Observable<
       any[]
     >;
-    let page = getPage.subscribe((data) => {
-      console.log(data);
+    getPage.subscribe((data) => {
+      this.dataPage = data;
     });
+  }
+
+  loadPage() {
+    let data: any = this.dataPage[0];
+    for (const componet of data.page) {
+      for (const element of this.cards2) {
+        if (element.id_card === componet.modelo) {
+          let viewComponent = this.showComponent.viewContainerRef;
+          viewComponent.createComponent<any>(element.structure);
+          this.utils.newLoadIndex();
+        }
+      }
+    }
   }
 
   drop(event: CdkDragDrop<string[]>) {

@@ -47,8 +47,11 @@
       [cdkDropListConnectedTo]="['components']"
       (cdkDropListDropped)="drop($event)"
     >
-      <ng-template appComponenLoad></ng-template>
+      <ng-template appComponenLoad id="contenido"> </ng-template>
     </div>
   </div>
-  <div class="col-2">col-2</div>
+  <div class="col-2">
+    <button class="btn btn-success" (click)="savePage()">save page</button>
+    <button class="btn btn-danger" (click)="getPages()">get pages</button>
+  </div>
 </div>

@@ -11,6 +11,9 @@ import { Header2Component } from './headers/header2/header2.component';
 import { Card1Component } from './cards/card1/card1.component';
 import { Card2Component } from './cards/card2/card2.component';
 import { ComponenLoadDirective } from './directivas/componen-load.directive';
+import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
+import { provideFirestore, getFirestore } from '@angular/fire/firestore';
+import { environment } from 'src/environments/environment';
 
 @NgModule({
   declarations: [
@@ -23,7 +26,13 @@ import { ComponenLoadDirective } from './directivas/componen-load.directive';
     Card2Component,
     ComponenLoadDirective,
   ],
-  imports: [BrowserModule, DragDropModule, FormsModule],
+  imports: [
+    BrowserModule,
+    DragDropModule,
+    FormsModule,
+    provideFirebaseApp(() => initializeApp(environment.firebaseConfig)),
+    provideFirestore(() => getFirestore()),
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })

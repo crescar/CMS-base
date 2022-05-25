@@ -52,7 +52,7 @@
           placeholder="yor image link"
           [(ngModel)]="data.dataElement.url_img"
         />
-        <button class="btn btn-danger">Cancel</button>
+        <button class="btn btn-danger" (click)="removeCard()">Cancel</button>
         <button class="btn btn-success" (click)="saveData()">save</button>
       </div>
       <ng-template #showEdit>

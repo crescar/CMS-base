@@ -32,7 +32,6 @@ export class AppComponent implements OnInit {
     this.data = this.utils.data;
     this.getData = this.utils.getData.subscribe((data) => {
       this.data = data;
-      console.log(this.data);
     });
   }
   cards = [
@@ -74,8 +73,10 @@ export class AppComponent implements OnInit {
       for (const element of this.cards2) {
         if (element.id_card === componet.modelo) {
           let viewComponent = this.showComponent.viewContainerRef;
-          viewComponent.createComponent<any>(element.structure);
-          this.utils.newLoadIndex();
+          let createComponent = viewComponent.createComponent<any>(
+            element.structure
+          );
+          createComponent.instance.data = componet.dataElement;
         }
       }
     }

@@ -15,6 +15,9 @@ import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
 import { provideFirestore, getFirestore } from '@angular/fire/firestore';
 import { environment } from 'src/environments/environment';
 import { CardShow1Component } from './cards/card-show1/card-show1.component';
+import { LoadPagesComponent } from './pages/load-pages/load-pages.component';
+import { CreatePagesComponent } from './pages/create-pages/create-pages.component';
+import { AppRoutingModule } from './app.routing';
 
 @NgModule({
   declarations: [
@@ -27,10 +30,13 @@ import { CardShow1Component } from './cards/card-show1/card-show1.component';
     Card2Component,
     ComponenLoadDirective,
     CardShow1Component,
+    LoadPagesComponent,
+    CreatePagesComponent,
   ],
   imports: [
     BrowserModule,
     DragDropModule,
+    AppRoutingModule,
     FormsModule,
     provideFirebaseApp(() => initializeApp(environment.firebaseConfig)),
     provideFirestore(() => getFirestore()),
